@@ -1,8 +1,3 @@
-
-# Set-PSRepository -Name "PSGallery" -InstallationPolicy Trusted
-# Install-Module -Name 7Zip4Powershell -Scope CurrentUser -Verbose
-#Import-Module 7Zip4PowerShell
-
 $vers = "0.14.6"
 
 ## ------------------------------ ##
@@ -31,24 +26,15 @@ New-Item $temppath -ItemType "directory" | Out-Null
 ## Copy Inputs into Temp Folder
 ## ------------------------------ ##
 
-$installcmd = @(
-    'ROBOCOPY "%~dp0Obsidian" "%LOCALAPPDATA%\Obsidian" /mir'
-    'set TARGET=%LOCALAPPDATA%\Obsidian\Obsidian.exe'
-    'set SHORTCUT=%APPDATA%\Microsoft\Windows\Start Menu\Programs\Obsidian.lnk'
-    'set PWS=powershell.exe -ExecutionPolicy Bypass -NoLogo -NonInteractive -NoProfile'
-    '%PWS% -Command "$ws = New-Object -ComObject WScript.Shell; $s = $ws.CreateShortcut(''%SHORTCUT%''); $S.TargetPath = ''%TARGET%''; $S.Save()"'
-)
+$installcmd = "powershell.exe -executionpolicy bypass -command `"& '%~dp0Setup.ps1' i`""
 $Utf8NoBomEncoding = New-Object System.Text.UTF8Encoding $False
 [System.IO.File]::WriteAllLines("$temppath\Install.cmd", $installcmd, $Utf8NoBomEncoding)
 
-
-$uninstallcmd = @(
-    'rmdir /S /Q %LOCALAPPDATA%\obsidian-updater'
-    'rmdir /S /Q %LOCALAPPDATA%\Obsidian'
-    'del /F /Q "%APPDATA%\Microsoft\Windows\Start Menu\Programs\Obsidian.lnk"'
-)
+$uninstallcmd = "powershell.exe -executionpolicy bypass -command `"& '%~dp0Setup.ps1' u`""
 $Utf8NoBomEncoding = New-Object System.Text.UTF8Encoding $False
 [System.IO.File]::WriteAllLines("$temppath\Uninstall.cmd", $uninstallcmd, $Utf8NoBomEncoding)
+
+Copy-Item "$PSScriptRoot\SetupScript.ps1" "$temppath\Setup.ps1"
 
 ## ------------------------------ ##
 ## Download Obsidian
@@ -63,8 +49,8 @@ $wc.DownloadFile($url, $filepath)
 ## ------------------------------ ##
 ## Extract Obsidian & Clean Up
 ## ------------------------------ ##
-./7z.exe x "$temppath\Obsidian.$vers.exe" -o"$temppath\TempX"
-./7z.exe x "$temppath\TempX\`$PLUGINSDIR\app-64.7z" -o"$temppath\Obsidian\"
+./7z.exe x -aoa "$temppath\Obsidian.$vers.exe" -o"$temppath\TempX"
+./7z.exe x -aoa "$temppath\TempX\`$PLUGINSDIR\app-64.7z" -o"$temppath\Obsidian\"
 
 ## Cleanup
 $relocation = (New-Object -ComObject Shell.Application).NameSpace('shell:Downloads').Self.Path
@@ -80,10 +66,10 @@ if (Test-Path $Testpath) {
     Remove-Item $Testpath
 }
 
-& "$PSScriptRoot\Microsoft Win32 Content Prep Tool\IntuneWinAppUtil.exe" -c "$temppath" -s "$filepath" -o "$buildpath"
+& "$PSScriptRoot\Microsoft Win32 Content Prep Tool\IntuneWinAppUtil.exe" -c "$temppath" -s "$temppath\Setup.ps1" -o "$buildpath"
 
 ## ------------------------------ ##
-## Clean-Up
+## Clean-Up - Pause here for debug
 ## ------------------------------ ##
 If (Test-Path $temppath) {
     $relocation = (New-Object -ComObject Shell.Application).NameSpace('shell:Downloads').Self.Path
