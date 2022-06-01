@@ -16,7 +16,7 @@
 | Information URL | https://obsidian.md/ |
 | Privacy URL | https://obsidian.md/privacy |
 | Category | Utilities & Tools |
-| Logo | See Icon.png |
+| Logo | See [Icon.png](Icon.png) |
 
 ### Program
 
