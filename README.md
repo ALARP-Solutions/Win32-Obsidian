@@ -26,9 +26,10 @@
 | Uninstall Command | Uninstall.cmd |
 | Install Behaviour | System |
 
-<!-- ### Detection Rules
+### Detection Rules
+Detection is done using [DetectionScript.ps1](DetectionScript.ps1)
 
-| Field | Data |
+<!-- | Field | Data |
 | --- | --- |
 | Type | Registry |
 | Key Path | HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\{850cdc16-85df-4052-b06e-4e3e9e83c5c6} |
