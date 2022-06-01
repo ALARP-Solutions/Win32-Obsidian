@@ -2,19 +2,19 @@
   <a href="https://github.com/ALARP-Solutions/WIN32-VSCODE">
     <img src="Icon.png" alt="Logo" width="80" height="80">
   </a>
-  <h1>Win32 Builder - Logitech Options Plus</h1>
+  <h1>Win32 Builder - Obsidian</h1>
 </div>
 
-## Configuring VSCode
+## Configuring Obsidian
 
 ### App Information
 | Field | Data |
 | --- | --- |
-| Name | Logitech Options+ |
-| Description | Logi Options+ is a next-gen app that lets you manage and customize your supported mice and keyboards —so they all seamlessly work towards your goals. Combining the best features of Options with a brand new easy-to-use interface, Options+ is designed to transform your daily tasks. |
-| Publisher | Logitech |
-| Information URL | https://www.logitech.com/en-au/software/logi-options-plus.html |
-| Privacy URL | https://www.logitech.com/en-au/legal/web-privacy-policy.html |
+| Name | Obsidian |
+| Description | Obsidian is a powerful knowledge base on top of a local folder of plain text Markdown files. |
+| Publisher | Obsidian |
+| Information URL | https://obsidian.md/ |
+| Privacy URL | https://obsidian.md/privacy |
 | Category | Utilities & Tools |
 | Logo | See Icon.png |
 
@@ -26,7 +26,7 @@
 | Uninstall Command | Uninstall.cmd |
 | Install Behaviour | System |
 
-### Detection Rules
+<!-- ### Detection Rules
 
 | Field | Data |
 | --- | --- |
@@ -36,5 +36,5 @@
 | Detection Method | Version Comparison |
 | Operator | Equals |
 | Value | _X.Y.Z_ |
-| Associated with a 32-bit App | No |
+| Associated with a 32-bit App | No | -->
 

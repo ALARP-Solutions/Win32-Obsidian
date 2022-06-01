@@ -33,19 +33,19 @@ New-Item $temppath -ItemType "directory" | Out-Null
 
 $installcmd = @(
     'ROBOCOPY "%~dp0Obsidian" "%LOCALAPPDATA%\Obsidian" /mir'
-    'set TARGET="%LOCALAPPDATA%\Obsidian\Obsidian.exe"'
-    'set SHORTCUT="%APPDATA%\Microsoft\Windows\Start Menu\Programs\Obsidian.lnk"'
+    'set TARGET=%LOCALAPPDATA%\Obsidian\Obsidian.exe'
+    'set SHORTCUT=%APPDATA%\Microsoft\Windows\Start Menu\Programs\Obsidian.lnk'
     'set PWS=powershell.exe -ExecutionPolicy Bypass -NoLogo -NonInteractive -NoProfile'
-    '%PWS% -Command "$ws = New-Object -ComObject WScript.Shell; $s = $ws.CreateShortcut(%SHORTCUT%); $S.TargetPath = %TARGET%; $S.Save()"'
+    '%PWS% -Command "$ws = New-Object -ComObject WScript.Shell; $s = $ws.CreateShortcut(''%SHORTCUT%''); $S.TargetPath = ''%TARGET%''; $S.Save()"'
 )
 $Utf8NoBomEncoding = New-Object System.Text.UTF8Encoding $False
 [System.IO.File]::WriteAllLines("$temppath\Install.cmd", $installcmd, $Utf8NoBomEncoding)
 
 
 $uninstallcmd = @(
-    'del /f /q "%APPDATA%\Microsoft\Windows\Start Menu\Programs\Obsidian.lnk"'
-    'del /f /q "%LOCALAPPDATA%\obsidian-updater"'
-    'del /f /q "%LOCALAPPDATA%\Obsidian"'
+    'rmdir /S /Q %LOCALAPPDATA%\obsidian-updater'
+    'rmdir /S /Q %LOCALAPPDATA%\Obsidian'
+    'del /F /Q "%APPDATA%\Microsoft\Windows\Start Menu\Programs\Obsidian.lnk"'
 )
 $Utf8NoBomEncoding = New-Object System.Text.UTF8Encoding $False
 [System.IO.File]::WriteAllLines("$temppath\Uninstall.cmd", $uninstallcmd, $Utf8NoBomEncoding)
