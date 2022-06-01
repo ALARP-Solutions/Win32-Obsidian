@@ -26,16 +26,32 @@
 | Uninstall Command | Uninstall.cmd |
 | Install Behaviour | System |
 
+### Requirements
+| Field | Data |
+| --- | --- |
+| Operating system architecture | x64 |
+| Minimum operating system | Windows 10 20H2 |
+| Install Behaviour | System |
+| Disk space required (MB) | 100 |
+| Physical memory required (MB) | _ |
+| Minimum number of logical processors required | _ |
+| Minimum CPU speed required (MHz) | _ |
+| Additional requirement rules | _ |
+
 ### Detection Rules
 Detection is done using [DetectionScript.ps1](DetectionScript.ps1)
 
-<!-- | Field | Data |
+| Field | Data |
 | --- | --- |
-| Type | Registry |
-| Key Path | HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\{850cdc16-85df-4052-b06e-4e3e9e83c5c6} |
-| Value Name | DisplayVersion |
-| Detection Method | Version Comparison |
-| Operator | Equals |
-| Value | _X.Y.Z_ |
-| Associated with a 32-bit App | No | -->
+| Rules Format | Use a custom detection script |
+| Script | Detection is done using [DetectionScript.ps1](DetectionScript.ps1) |
+| Run script as 32-bit process on 64-bit clients | No |
+| Enforce script signature check and run script silently | No |
+
+
+### Dependencies
+No dependencies.
+
+### Supersedence
+Maybe set to supersede previous versions at you leisure.
 
