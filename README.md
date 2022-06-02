@@ -39,12 +39,12 @@
 | Additional requirement rules | _ |
 
 ### Detection Rules
-Detection is done using [DetectionScript.ps1](DetectionScript.ps1)
+Detection is done using [DetectionScript.ps1](TBA/DetectionScript.ps1)
 
 | Field | Data |
 | --- | --- |
 | Rules Format | Use a custom detection script |
-| Script | Detection is done using [DetectionScript.ps1](DetectionScript.ps1) |
+| Script | Detection is done using [DetectionScript.ps1](TBA/DetectionScript.ps1) |
 | Run script as 32-bit process on 64-bit clients | No |
 | Enforce script signature check and run script silently | No |
 
